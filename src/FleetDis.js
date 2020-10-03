@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import {
-    Button,
-    Card,
-    CardActionArea,
-    CardMedia,
-    CardContent,
-} from '@material-ui/core'
+import React from 'react'
+//import React from 'react'
+// import axios from 'axios'
+// import {
+//     Button,
+//     Card,
+//     CardActionArea,
+//     CardMedia,
+//     CardContent,
+// } from '@material-ui/core'
+
 // const ShipData = val => {
 //     if(val === 1){
 //         return (
@@ -24,9 +26,9 @@ import {
 //     }
 // }
 
-const shipAPI = axios.create({
-    baseURL: 'https://api.fleetyards.net/v1/ships'
-})
+// const shipAPI = axios.create({
+//     baseURL: 'https://api.fleetyards.net/v1/ships'
+// })
 
 let fleetDis = () => {
 
