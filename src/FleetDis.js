@@ -1,13 +1,9 @@
 import React from 'react'
-//import React from 'react'
-// import axios from 'axios'
-// import {
-//     Button,
-//     Card,
-//     CardActionArea,
-//     CardMedia,
-//     CardContent,
-// } from '@material-ui/core'
+import FleetGrab from './FleetGrab'
+import {
+    Button
+} from '@material-ui/core'
+import './assets/scss/fleetGrab.scss'
 
 // const ShipData = val => {
 //     if(val === 1){
@@ -38,12 +34,12 @@ let fleetDis = () => {
                     <h1>Star Citizen Ship List</h1>
                     <h2>This App displays a list of ships from the game Star Citizen, which is produced by Roberts Space Industries</h2>
                 </div>
-                <div>
-                    <button >Display all Ships</button>
-                    <button >Display Ships With Brochure</button>
+                <div className='buttonSpacing'>
+                    <Button variant='contained'>Display all Ships</Button>
+                    <Button variant='contained'>Display Ships With Brochure</Button>
                 </div>
                 <div>
-                    {/* <ShipData val={disTog}></ShipData> */}
+                    <FleetGrab></FleetGrab>
                 </div>
             </main>
         )

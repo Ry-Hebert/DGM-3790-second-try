@@ -1,0 +1,27 @@
+.cardGrid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.shipCard{
+    display: grid;
+    max-width: 33vw;
+    margin: 2rem;
+}
+
+.cardHeader{
+    text-align: start;
+}
+
+.cardBText{
+    text-align: start;
+}
+
+.buttonSpacing{
+    & button{
+        margin: 2rem;
+    }
+}
+
