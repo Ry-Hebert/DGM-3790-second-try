@@ -40,11 +40,7 @@ let fleetGrab = (var1) =>{
                         </CardActionArea>
                         <CardActions>
                             <Button><Link href={element.storeUrl} target='_blank' rel='noopener'>Learn More</Link></Button>
-                            {
-                                if(element.brochure != null){
-                                    return(<Button><Link href={element.brochure} target='_blank' rel='noopener'>View Brochure</Link></Button>)
-                                }
-                            }
+                            {element.brochure != null ? <Button><Link href={element.brochure} target='_blank' rel='noopener'>View Brochure</Link></Button> : null}
                         </CardActions>
                     </Card>
                 )
