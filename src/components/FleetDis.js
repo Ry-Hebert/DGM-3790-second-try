@@ -3,30 +3,10 @@ import FleetGrab from './FleetGrab'
 import {
     Button
 } from '@material-ui/core'
-import './assets/scss/fleetGrab.scss'
+import '../assets/scss/fleetGrab.scss'
 
-// const ShipData = val => {
-//     if(val === 1){
-//         return (
-//             ShipList.forEach(element => {
-//                 return(
-//                 <div className='shipCard'>
-//                     <h4>{element.name}</h4>
-//                 </div>
-//                 )
-//             })
-//         )
-//     }
-//     else {
-//         return (<div></div>)
-//     }
-// }
 
-// const shipAPI = axios.create({
-//     baseURL: 'https://api.fleetyards.net/v1/ships'
-// })
-
-let fleetDis = () => {
+let FleetDis = () => {
 
         return (
             <main>
@@ -45,4 +25,4 @@ let fleetDis = () => {
         )
 }
 
-export default fleetDis
+export default FleetDis

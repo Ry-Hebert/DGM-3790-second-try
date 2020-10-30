@@ -1,5 +1,4 @@
 import React from 'react'
-import FleetData from './assets/fleetyard'
 import {
     Grid, 
     Button,
@@ -11,14 +10,29 @@ import {
     Typography,
     Link
 } from '@material-ui/core'
-import './assets/scss/fleetGrab.scss'
+import '../assets/scss/fleetGrab.scss'
+import { useShipListContext } from '../contexts/ShipListContext'
+// import FleetData from '../assets/fleetyard'
 
-let placeHolder1 = FleetData
+const FleetGrab = () =>{
+    console.log('Test')
+    const manifest = useShipListContext()
 
-let fleetGrab = (var1) =>{
+    // const [manifest, setManifest] = useState({
+    //     loading: false,
+    //     shipList: []
+    // })
+
+    // useEffect(() => {
+    //     setManifest({
+    //         loading: false,
+    //         shipList: 
+    //     })
+    // }, [])
+
     return(
         <Grid className='cardGrid'>
-            {placeHolder1.map(element => {
+            {manifest.shipList.map(element => {
                 let elAlt = `The ${element.manufacturer.name} ${element.name}`
                 let elImg = `${element.storeImageMedium}`
                 return(
@@ -49,4 +63,4 @@ let fleetGrab = (var1) =>{
     )
 } 
 
-export default fleetGrab
+export default FleetGrab

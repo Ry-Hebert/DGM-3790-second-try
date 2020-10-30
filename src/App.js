@@ -1,15 +1,18 @@
-import React from 'react';
-import './App.css';
-import FleetDis from './FleetDis'
+import React from 'react'
+import './App.css'
+import FleetDis from './components/FleetDis'
+import { ShipListContextProvider } from './contexts/ShipListContext'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <FleetDis/>
-      </header>
-    </div>
-  );
+    <ShipListContextProvider>
+      <div className="App">
+        <header className="App-header">
+          <FleetDis/>
+        </header>
+      </div>
+    </ShipListContextProvider>
+  )
 }
 
 export default App;
