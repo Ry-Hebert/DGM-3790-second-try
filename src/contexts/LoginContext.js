@@ -41,3 +41,5 @@ export const LoginContextProvider = (props) =>{
         </LoginContext.Provider>
     )
 }
+
+export const useLoginContext = () => useContext(LoginContext)
