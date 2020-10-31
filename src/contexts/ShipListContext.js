@@ -29,7 +29,7 @@ export const ShipListContextProvider = (props) => {
 
             } catch(error){console.log(error)}
         }
-        fetchData('shipListX')
+        fetchData('shipList')
     }, [])
 
     // setShipList(apiRes.data)
