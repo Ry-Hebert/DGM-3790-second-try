@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 // import { useLoginContext } from '../contexts/LoginContext'
 import Login from './Login'
+import { useLoginContext } from '../contexts/LoginContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,7 @@ export default function MenuAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const loginCtx = useLoginContext()
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +36,11 @@ export default function MenuAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCloseLogout = () => {
+    setAnchorEl(null);
+    loginCtx.login()
   };
 
   return (
@@ -71,9 +78,14 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                {/* <MenuItem onClick={handleClose}>Login</MenuItem> */}
-                <Login onClick={handleClose}/>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                {!loginCtx.isAuth ? 
+                (
+                    <Login onClick={handleClose}/>
+                ) : 
+                (
+                    <MenuItem onClick={handleCloseLogout}>Logout</MenuItem>
+                )
+                }
               </Menu>
             </div>
         </Toolbar>

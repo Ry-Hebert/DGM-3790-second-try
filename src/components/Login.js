@@ -65,10 +65,58 @@ function SimpleDialog(props) {
                     handleSubmit
                 }) =>(
                 <form onSubmit={handleSubmit}>
-                    <TextField className='formTxtF' required id="outlined-req-name" type='text' label="Name" variant="outlined" />
-                    <TextField className='formTxtF' required id="outlined-req-email" type='email' label="Email" variant="outlined" />
-                    <TextField className='formTxtF' required id="outlined-req-pass" type='password' label="Password" variant="outlined" />
-                    <Button onClick={handleSubmit} type='submit' className='formTxtF' variant="contained" size="large" color="primary">Submit</Button>
+                    <TextField 
+                    className='formTxtF' 
+                    required 
+                    id="out-req-name" 
+                    type='text' 
+                    label="Name" 
+                    variant="outlined"
+                    name='name'
+                    autoFocus
+                    value={values.name}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={Boolean(touched.name && errors.name)}
+                    helperText={touched.name && errors.name}
+                    />
+                    <TextField 
+                    className='formTxtF' 
+                    required 
+                    id="outlined-req-email" 
+                    type='email' 
+                    label="Email" 
+                    variant="outlined"
+                    name='email'
+                    autoFocus
+                    value={values.email}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={Boolean(touched.email && errors.email)}
+                    helperText={touched.email && errors.email}
+                    />
+                    <TextField 
+                    className='formTxtF' 
+                    required 
+                    id="outlined-req-pass" 
+                    type='password' 
+                    label="Password" 
+                    variant="outlined"
+                    name='password'
+                    autoFocus
+                    value={values.password}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={Boolean(touched.password && errors.password)}
+                    helperText={touched.password && errors.password}
+                    />
+                    <Button 
+                    onClick={handleSubmit} 
+                    type='submit' 
+                    className='formTxtF' 
+                    variant="contained" 
+                    size="large" 
+                    color="primary">Creat Account</Button>
                 </form>
                 )}
             </Formik>
