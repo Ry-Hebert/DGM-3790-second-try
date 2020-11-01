@@ -25,3 +25,15 @@
     }
 }
 
+.formCol{
+    form{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+form{
+    .formTxtF{
+        margin: 1rem 0rem;
+    }
+}

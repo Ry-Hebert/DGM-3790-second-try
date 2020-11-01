@@ -1,65 +1,84 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
-
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
+import TextField from '@material-ui/core/TextField';
+import { DialogContent } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { useLoginContext } from '../contexts/LoginContext';
 
 function SimpleDialog(props) {
-  const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const { onClose, open } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
+  const loginCtx = useLoginContext()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  return (
+  return !loginCtx.isAuth ? (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-      <List>
-        {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={email} />
-          </ListItem>
-        ))}
-
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
-      </List>
+        <DialogTitle id="simple-dialog-title">Create Account</DialogTitle>
+        <DialogContent className='formCol'>
+            <Formik
+                initialValues={{ name: '', email: '', password: '', submit: null }}
+                validationSchema={Yup.object().shape({
+                    name: Yup.string()
+                        .min(2, 'Name must be at least 2 characters.')
+                        .max(50, 'Name is too long. (must be less than 50 characters)')
+                        .required('Name is required.'),
+                    email: Yup.string()
+                        .email('Must be a valid email.')
+                        .max(50)
+                        .required('Email is required'),
+                    password: Yup.string()
+                        .min(8, 'Password is too short (must be at least 8 characters)')
+                        .max(50, 'Password is too long (must be at most 50 characters)')
+                        .required('Password is required'),
+                })}
+                onSubmit={ (values, { setErrors, setStatus, setSubmitting }) => {
+                    try {
+                        setName(name);
+                        setEmail(email);
+                        setPassword(password);
+                        loginCtx.setName(values.name);
+                        loginCtx.setEmail(values.email);
+                        loginCtx.setPassword(values.password);
+                        loginCtx.login()
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }}
+            >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit
+                }) =>(
+                <form onSubmit={handleSubmit}>
+                    <TextField className='formTxtF' required id="outlined-req-name" type='text' label="Name" variant="outlined" />
+                    <TextField className='formTxtF' required id="outlined-req-email" type='email' label="Email" variant="outlined" />
+                    <TextField className='formTxtF' required id="outlined-req-pass" type='password' label="Password" variant="outlined" />
+                    <Button onClick={handleSubmit} type='submit' className='formTxtF' variant="contained" size="large" color="primary">Submit</Button>
+                </form>
+                )}
+            </Formik>
+        </DialogContent>
     </Dialog>
-  );
+  ) : (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+        <DialogTitle id="simple-dialog-title">Account Creation Successful!</DialogTitle>
+    </Dialog>
+  )
 }
 
 SimpleDialog.propTypes = {
@@ -70,25 +89,27 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setOpen(false);
-    setSelectedValue(value);
   };
 
+
+
   return (
-    <div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-      <br />
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-    </div>
+    <>
+        <MenuItem onClick={handleClickOpen}>Login
+        {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            Open simple dialog
+        </Button> */}
+        </MenuItem>
+        <SimpleDialog open={open} onClose={handleClose} />
+    </>
   );
 }
+
+//export default Login
