@@ -73,6 +73,7 @@ function SimpleDialog(props) {
                     label="Name" 
                     variant="outlined"
                     name='name'
+                    tabIndex={0}
                     autoFocus
                     value={values.name}
                     onBlur={handleBlur}
@@ -88,6 +89,7 @@ function SimpleDialog(props) {
                     label="Email" 
                     variant="outlined"
                     name='email'
+                    tabIndex={0}
                     autoFocus
                     value={values.email}
                     onBlur={handleBlur}
@@ -103,6 +105,7 @@ function SimpleDialog(props) {
                     label="Password" 
                     variant="outlined"
                     name='password'
+                    tabIndex={0}
                     autoFocus
                     value={values.password}
                     onBlur={handleBlur}

@@ -1,14 +1,17 @@
 .cardGrid
 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     width: 100%;
+    justify-items: center;
 }
 
 .shipCard{
     display: grid;
-    max-width: 33vw;
-    margin: 2rem;
+    //max-width: 33vw;
+    margin: 1rem;
+    align-content: baseline;
+    height: fit-content;
 }
 
 .cardHeader{
@@ -40,4 +43,20 @@ form{
 
 #menu-appbar > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded{
     top: 4rem !important;
+}
+
+@media only screen and (min-width:34rem) 
+{
+    .cardGrid
+    {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width:60rem) 
+{
+    .cardGrid
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
