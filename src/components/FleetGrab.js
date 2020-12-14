@@ -46,7 +46,7 @@ const FleetGrab = () =>{
         <Grid className='cardGrid'>
             {manifest.shipList.map((element, i) => {
                 let elAlt = `The ${element.manufacturer.name} ${element.name}`
-                let elImg = `${element.storeImageSmall}`
+                let elImg = `${element.storeImageMedium}`
                 return(
                     <Card elevation={5} className='shipCard'>
                         <CardActionArea>

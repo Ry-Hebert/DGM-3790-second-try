@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import axios from 'axios'
     
-const apiURL = 'https://api.fleetyards.net/v1/models?page=1&perPage=200'
+const apiURL = 'https://api.fleetyards.net/v1/models?page=1&perPage=100'
 
 const ShipListContext = createContext({
     shipList: [],
