@@ -16,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled'
 import Login from './Login'
 import { useLoginContext } from '../contexts/LoginContext';
 
@@ -84,7 +85,7 @@ export default function MenuAppBar() {
       <Divider />
       <List>
         <ListItem button key='About'>
-          <ListItemIcon><InfoIcon></InfoIcon></ListItemIcon>
+          <ListItemIcon><PlayCircleFilledIcon></PlayCircleFilledIcon></ListItemIcon>
           <ListItemText primary='App Display' />
         </ListItem>
       </List>
