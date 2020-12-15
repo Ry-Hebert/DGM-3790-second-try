@@ -13,7 +13,7 @@ Current features:
 
 ## Project Requirements 
 
-#### 1.  Effectively use conditional logic and JavaScript array methods(e.g. Filter, Map, Reduce, Find) to render large lists.
+### 1.  Effectively use conditional logic and JavaScript array methods(e.g. Filter, Map, Reduce, Find) to render large lists.
 
 These methods are used in several places throughout the code. Most notably however is its use in FleeGrab.js where it is used to output the code for the card blocks.
 
@@ -62,13 +62,55 @@ These methods are used in several places throughout the code. Most notably howev
 </Grid>
 ```
 
-#### 1.Encapsulate your code as React functional components.
+### 2.  Encapsulate your code as React functional components.
 
+All components have been implemented as functional components.
 
-Work with command-line tools and NPM to create and manage your project within a real development toolset.
-Allow communication between components using props and the Context API.
-Present a form for user input that provides useful form validation and feedback.
-Create at least 5 custom components and use it within at least two of your other components.
+### 3.  Work with command-line tools and NPM to create and manage your project within a real development toolset.
+
+The following is a list of some of the tools used in the creation and or testing of this project.
+
+*   Terminal / command-line
+*   VS Code
+*   Git
+*   NPM
+*   Yarn
+*   curl
+
+### 4.  Allow communication between components using props and the Context API.
+
+Examples of this can be seen in the following files.
+
+*   Contexts
+    *   [LoginContext](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/contexts/LoginContext.js)
+    *   [ShipListContext](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/contexts/ShipListContext.js)
+*   Components
+    *   [Login](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Login.js)
+    *   [NavAppBar](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/NavAppBar.js)
+    *   [FleetGrab](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetGrab.js)
+
+### 5.  Present a form for user input that provides useful form validation and feedback.
+
+As the implementation on this is lengthy for a code block and the file it's implemented in mostly just handles that form and its validation and feedback im just going to link it here.
+
+*   [Login](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Login.js)
+
+### 6.  Create at least 5 custom components and use it within at least two of your other components.
+
+*   Custom components
+    *   [About](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/About.js)
+    *   [Error](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Error.js)
+    *   [FleetDis](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetDis.js)
+    *   [FleetGrab](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetGrab.js)
+    *   [Login](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Login.js)
+    *   [NavAppBar](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/NavAppBar.js)
+    *   [App](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/App.js)
+*   Components that use other custom components within them
+    *   [FleetDis](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetDis.js)
+    *   [NavAppBar](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/NavAppBar.js)
+    *   [App](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/App.js)
+    *   [index](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/index.js)
+
 Use a mix of CSS animations and Transition Component transitions to enhance some aspects of your project.
 Connect to a server using HTTP and display retrieved data.
 Provide at least 3 different routes with navigation between them using React Router.
