@@ -6,9 +6,13 @@ One of the things I thought this little app could do was provide a way to search
 
 Current features:
 
-* One of the first features is the ability to easily see which ships have brochures created for them and a link to download / view those brochures. 
+*   One of the first features is the ability to easily see which ships have brochures created for them and a link to download / view those brochures. 
 
-* Another feature would be to link to the RSI store page for each ship to find the official data, information, and extensive views for each ship.
+*   Another feature would be linking to the RSI store page for each ship to find the official data, information, and extensive views.
+
+*   The project also incorporates login exclusive viewing
+
+*   Error route handling
 
 
 ## Project Requirements 
@@ -88,6 +92,7 @@ Examples of this can be seen in the following files.
     *   [Login](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Login.js)
     *   [NavAppBar](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/NavAppBar.js)
     *   [FleetGrab](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetGrab.js)
+    *   [FleetDisplay](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetDis.js)
 
 ### 5.  Present a form for user input that provides useful form validation and feedback.
 
@@ -111,8 +116,78 @@ As the implementation on this is lengthy for a code block and the file it's impl
     *   [App](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/App.js)
     *   [index](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/index.js)
 
-Use a mix of CSS animations and Transition Component transitions to enhance some aspects of your project.
-Connect to a server using HTTP and display retrieved data.
-Provide at least 3 different routes with navigation between them using React Router.
-Manage your application's state using Hooks and the Context API.
-Structure, document, and deploy your final project code according to common industry practices.
+### 7.  Use a mix of CSS animations and Transition Component transitions to enhance some aspects of your project.
+
+Multiple instances of CSS animations and transitions have been incorporated into this project. Some of the parts of the project that include them are as follows.
+
+*   Ripple effect on cards when clicked
+*   Ripple effect on buttons when clicked
+*   Ripple effect on Icons when clicked
+*   Menu side bar slides in and out when clicked
+*   Login / Logout slides in and out quickly while fading respectively
+*   Card expands on view more icon click
+*   View more icon rotates when clicked
+
+### 8.  Connect to a server using HTTP and display retrieved data.
+
+The effects of this process can be seen by logging in an using the app to view the displayed information. But the main bulk of the backend code that handles that process can be seen here
+
+```javascript
+const apiURL = 'https://api.fleetyards.net/v1/models?page=1&perPage=100'
+
+useEffect(() =>{
+    const fetchData = async () =>{
+        try {
+            const apiRes = await axios.get(apiURL)
+            
+            //if this doesn't work check axios needs
+            const resData = await apiRes.data
+
+            console.log(`This is apiRes: ${apiRes} This is resData: ${resData}`)
+
+            setShipList(resData)
+
+        } catch(error){console.log(error)}
+    }
+    fetchData('shipList')
+}, [])
+```
+
+### 9.  Provide at least 3 different routes with navigation between them using React Router.
+
+The three main routes are as follows:
+
+*   [The About Page](https://dgm-3790-react-app-take-2.netlify.app/)
+    *   https://dgm-3790-react-app-take-2.netlify.app/
+*   [The Main App Display](https://dgm-3790-react-app-take-2.netlify.app/shipList)
+    *   https://dgm-3790-react-app-take-2.netlify.app/shipList
+*   [Error Handling](https://dgm-3790-react-app-take-2.netlify.app/error)
+    *   https://dgm-3790-react-app-take-2.netlify.app/error
+        *   anything can be added in place of the "error"
+
+Main handling for the routes:
+
+```javascript
+<Switch>
+    <Route path='/' component={About} exact />
+    <Route path='/shipList' component={FleetDis} />
+    <Route component={Error} />
+</Switch>
+```
+### 10. Manage your application's state using Hooks and the Context API.
+
+The contexts are implemented here
+
+*   [LoginContext](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/contexts/LoginContext.js)
+*   [ShipListContext](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/contexts/ShipListContext.js)
+
+and the contexts and use of states can be seen here:
+
+*   [Login](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/Login.js)
+*   [NavAppBar](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/NavAppBar.js)
+*   [FleetGrab](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetGrab.js)
+*   [FleetDisplay](https://github.com/Ry-Hebert/DGM-3790-second-try/blob/master/src/components/FleetDis.js)
+
+### 10. Structure, document, and deploy your final project code according to common industry practices.
+
+This can be seen here in the [GitHub](https://github.com/Ry-Hebert/DGM-3790-second-try#1encapsulate-your-code-as-react-functional-components) and in the [deployed app](https://dgm-3790-react-app-take-2.netlify.app)
