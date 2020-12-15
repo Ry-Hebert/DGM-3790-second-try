@@ -60,17 +60,18 @@ export default function MenuAppBar() {
   const openMenu = Boolean(state)
 
   const toggleDrawer = (event) => {
-    setState(event.currentTarget);
+    setState(!openMenu);
   };
 
-  const closeDrawer = (event) => {
-    setState(!event.currentTarget);
-  }
+  const closeDrawer = () => {
+    setState(false);
+  };
 
-  const list = (anchor) => (
+  const list = () => (
     <div
       className={clsx(classes.list)}
       role="presentation"
+      onClose={closeDrawer}
       onClick={closeDrawer}
       onKeyDown={closeDrawer}
     >
@@ -96,10 +97,10 @@ export default function MenuAppBar() {
       <AppBar position="static">
         <Toolbar>
           {['left'].map((anchor) =>(
-          <IconButton key={anchor} onClick={toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton key={anchor} onClose={closeDrawer} onClick={toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-            <Drawer anchor={anchor} open={openMenu} onClose={closeDrawer}>
-              {list(anchor)}
+            <Drawer anchor={anchor} state={state} open={openMenu} onClose={closeDrawer}>
+              {list()}
             </Drawer>
           </IconButton>
           ))}

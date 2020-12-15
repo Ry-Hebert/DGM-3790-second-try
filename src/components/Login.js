@@ -119,7 +119,7 @@ function SimpleDialog(props) {
                     className='formTxtF' 
                     variant="contained" 
                     size="large" 
-                    color="primary">Creat Account</Button>
+                    color="primary">Create Account</Button>
                 </form>
                 )}
             </Formik>
