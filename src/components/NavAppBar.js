@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -77,14 +78,14 @@ export default function MenuAppBar() {
       onKeyDown={closeDrawer}
     >
       <List>
-        <ListItem button key='About'>
+        <ListItem component={Link} to={'/'} button key='About'>
           <ListItemIcon><InfoIcon></InfoIcon></ListItemIcon>
           <ListItemText primary='About' />
         </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem button key='About'>
+        <ListItem component={Link} to={'/shipList'} button key='App Display'>
           <ListItemIcon><PlayCircleFilledIcon></PlayCircleFilledIcon></ListItemIcon>
           <ListItemText primary='App Display' />
         </ListItem>

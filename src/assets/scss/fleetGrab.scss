@@ -6,6 +6,20 @@
     justify-items: center;
 }
 
+.defaultLink{
+    text-decoration: none;
+}
+
+.aboutDiv{
+    max-width: 95%;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    & p{
+        max-width: 75%;
+    }
+}
+
 .shipCard{
     display: grid;
     //max-width: 33vw;
