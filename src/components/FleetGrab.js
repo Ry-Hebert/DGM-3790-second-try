@@ -18,6 +18,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../assets/scss/fleetGrab.scss';
 import { useShipListContext } from '../contexts/ShipListContext';
+import { useFavoritesContext } from '../contexts/FavoritesContext'
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
       expand: {
@@ -37,9 +39,32 @@ const FleetGrab = () =>{
     const manifest = useShipListContext()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const favoritesManifest = useFavoritesContext()
+    const appAPI = 'https://star-citizen-fleet-api.herokuapp.com/model/likedShips' //ATM Machine
 
     const handleExpandClick = (i) => {
         setExpanded({...expanded, [i]: !expanded[i]})
+    }
+
+    const handleFavoritesClick = async (element) => {
+        console.log(favoritesManifest)
+        let favCheck = favoritesManifest.favorites.map( x =>{return x.shipID})
+        let isFavorited = favCheck.includes(element.id)
+        console.log(isFavorited)
+        
+        console.log(`${appAPI}?shipID=${element.id}&manufacturer=${element.manufacturer}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
+        const encoded = encodeURI(`https://star-citizen-fleet-api.herokuapp.com/model/likedShips?shipID=${element.id}&manufacturer=${element.manufacturer}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
+
+        console.log(encoded)
+        await fetch(encoded, {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin': "*",
+                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
+            }
+        })
+        console.log(Axios.post(encoded))
     }
 
     return(
@@ -67,7 +92,7 @@ const FleetGrab = () =>{
                         <CardActions>
                             <Button><Link href={element.storeUrl} target='_blank' rel='noopener'>Learn More</Link></Button>
                             {element.brochure != null ? <Button><Link href={element.brochure} target='_blank' rel='noopener'>View Brochure</Link></Button> : null}
-                            <IconButton className='card-right' aria-label="add to favorites">
+                            <IconButton className='card-right' aria-label="add to favorites" onClick={() => handleFavoritesClick(element)}>
                                 <FavoriteIcon />
                             </IconButton>
                             <IconButton className={clsx(classes.expand[i], {[classes.expandOpen]: expanded[i],})} onClick={() => handleExpandClick(i)} aria-expanded={expanded} aria-label="show more">

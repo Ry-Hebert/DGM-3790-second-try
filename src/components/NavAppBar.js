@@ -18,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled'
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Login from './Login'
 import { useLoginContext } from '../contexts/LoginContext';
 
@@ -88,6 +89,13 @@ export default function MenuAppBar() {
         <ListItem component={Link} to={'/shipList'} button key='App Display'>
           <ListItemIcon><PlayCircleFilledIcon></PlayCircleFilledIcon></ListItemIcon>
           <ListItemText primary='App Display' />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem component={Link} to={'/favorites'} button key='Favorite Lists'>
+          <ListItemIcon><FavoriteIcon /></ListItemIcon>
+          <ListItemText primary='Favorite Lists' />
         </ListItem>
       </List>
     </div>

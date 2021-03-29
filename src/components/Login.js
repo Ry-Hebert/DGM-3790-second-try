@@ -51,6 +51,26 @@ function SimpleDialog(props) {
                         loginCtx.setEmail(values.email);
                         loginCtx.setPassword(values.password);
                         loginCtx.login()
+                        
+                        let badTemp = Math.random()
+
+                        localStorage.setItem('userName', values.name)
+                        localStorage.clear('userID')
+                        localStorage.setItem('userID', badTemp)
+                        console.log('This is the log of local storage userID:')
+                        console.log(localStorage.getItem('userID'))
+
+                        const notAGreatWay = async () =>{
+                          const apiURL = 'https://star-citizen-fleet-api.herokuapp.com/model/userLogin'
+                        
+                          // await axios.put(`${apiURL}?userName=${values.name}&userID=${localStorage.getItem('userID')}`)
+                          await fetch(`${apiURL}?userName=${values.name}&userID=${localStorage.getItem('userID')}`, {
+                            method: 'POST'
+                          })
+                        }
+
+                        notAGreatWay()
+                        
                     } catch (err) {
                         console.log(err);
                     }
