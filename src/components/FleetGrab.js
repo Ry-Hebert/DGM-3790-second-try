@@ -19,7 +19,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../assets/scss/fleetGrab.scss';
 import { useShipListContext } from '../contexts/ShipListContext';
 import { useFavoritesContext } from '../contexts/FavoritesContext'
-import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
       expand: {
@@ -53,18 +52,27 @@ const FleetGrab = () =>{
         console.log(isFavorited)
         
         console.log(`${appAPI}?shipID=${element.id}&manufacturer=${element.manufacturer}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
-        const encoded = encodeURI(`https://star-citizen-fleet-api.herokuapp.com/model/likedShips?shipID=${element.id}&manufacturer=${element.manufacturer}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
+        const encoded = encodeURI(`https://star-citizen-fleet-api.herokuapp.com/model/likedShips?shipID=${element.id}&manufacturer=${element.manufacturer}&name=${element.name}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
 
         console.log(encoded)
         await fetch(encoded, {
-            method: 'POST',
-            header: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Access-Control-Allow-Origin': "*",
-                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
-            }
+            method: 'POST'
+            // header: {
+            //     'Server': 'Cowboy',
+            //     'Connection': 'keep-alive',
+            //     'X-Powered-By': 'Express',
+            //     'Access-Control-Allow-Origin': '*',
+            //     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+            //     'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, OPTIONS',
+            //     'Content-Type': 'application/json; charset=utf-8',
+            //     'Content-Length': '485',
+            //     'Etag': 'W/"1e5-aGT0ZWq/bg8hbVitEuBcSn2yucs"',
+            //     'Via': '1.1 vegur',
+            // }
         })
-        console.log(Axios.post(encoded))
+        console.log(await fetch(encoded,{
+            method: 'POST'
+        }))
     }
 
     return(

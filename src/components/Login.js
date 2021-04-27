@@ -67,6 +67,10 @@ function SimpleDialog(props) {
                           await fetch(`${apiURL}?userName=${values.name}&userID=${localStorage.getItem('userID')}`, {
                             method: 'POST'
                           })
+
+                          console.log(await fetch(`${apiURL}?userName=${values.name}&userID=${localStorage.getItem('userID')}`, {
+                            method: 'POST'
+                          }))
                         }
 
                         notAGreatWay()
