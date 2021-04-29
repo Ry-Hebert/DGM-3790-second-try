@@ -19,6 +19,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../assets/scss/fleetGrab.scss';
 import { useShipListContext } from '../contexts/ShipListContext';
 import { useFavoritesContext } from '../contexts/FavoritesContext'
+import { ContactsOutlined } from '@material-ui/icons';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
       expand: {
@@ -46,33 +48,25 @@ const FleetGrab = () =>{
     }
 
     const handleFavoritesClick = async (element) => {
-        console.log(favoritesManifest)
-        let favCheck = favoritesManifest.favorites.map( x =>{return x.shipID})
-        let isFavorited = favCheck.includes(element.id)
+        console.log(element)
+        // console.log(favoritesManifest)
+        // let favCheck = favoritesManifest.favorites.map( x =>{return x.shipID})
+        let favCheck = await axios.get('https://star-citizen-fleet-api.herokuapp.com/model/likedShips')
+        let favRes = await favCheck.data
+        console.log(favCheck.data)
+        console.log(favRes)
+        let favCheckMapped = favRes.map( x =>{return x.shipID})
+        console.log(favCheckMapped)
+        let isFavorited = favCheckMapped.includes(element.id)
         console.log(isFavorited)
         
-        console.log(`${appAPI}?shipID=${element.id}&manufacturer=${element.manufacturer}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
-        const encoded = encodeURI(`https://star-citizen-fleet-api.herokuapp.com/model/likedShips?shipID=${element.id}&manufacturer=${element.manufacturer}&name=${element.name}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=${element.description}`)
-
-        console.log(encoded)
-        await fetch(encoded, {
-            method: 'POST'
-            // header: {
-            //     'Server': 'Cowboy',
-            //     'Connection': 'keep-alive',
-            //     'X-Powered-By': 'Express',
-            //     'Access-Control-Allow-Origin': '*',
-            //     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-            //     'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, OPTIONS',
-            //     'Content-Type': 'application/json; charset=utf-8',
-            //     'Content-Length': '485',
-            //     'Etag': 'W/"1e5-aGT0ZWq/bg8hbVitEuBcSn2yucs"',
-            //     'Via': '1.1 vegur',
-            // }
-        })
-        console.log(await fetch(encoded,{
-            method: 'POST'
-        }))
+        if(isFavorited !== true){
+            let encoded = encodeURI(`https://star-citizen-fleet-api.herokuapp.com/model/likedShips?shipID=${element.id}&manufacturer=${element.manufacturer.name}&name=${element.name}&category=testValue&storeImage=${element.storeImageMedium}&storeURL=${element.storeUrl}&brochure=${element.brochure}&description=thisisat`)
+            console.log(encoded)
+            await fetch(`${encoded}`, {
+                method: 'POST'
+            })
+        }
     }
 
     return(
