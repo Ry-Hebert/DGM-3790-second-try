@@ -26,7 +26,8 @@ export const FavoritesContextProvider = (props) => {
                 console.log(`This is apiRes: ${apiRes} This is resData: ${resData}`)
 
                 setFavorites(resData)
-
+                console.log('This is the Favorites Context Provider: ')
+                console.log(resData)
             } catch(error){console.log(error)}
         }
         fetchData('favorites')
