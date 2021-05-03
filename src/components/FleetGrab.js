@@ -19,7 +19,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../assets/scss/fleetGrab.scss';
 import { useShipListContext } from '../contexts/ShipListContext';
 import { useFavoritesContext } from '../contexts/FavoritesContext'
-import { ContactsOutlined } from '@material-ui/icons';
+// import { ContactsOutlined } from '@material-ui/icons';
 import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +40,8 @@ const FleetGrab = () =>{
     const manifest = useShipListContext()
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const favoritesManifest = useFavoritesContext()
-    const appAPI = 'https://star-citizen-fleet-api.herokuapp.com/model/likedShips' //ATM Machine
+    // const favoritesManifest = useFavoritesContext()
+    // const appAPI = 'https://star-citizen-fleet-api.herokuapp.com/model/likedShips' //ATM Machine
 
     const handleExpandClick = (i) => {
         setExpanded({...expanded, [i]: !expanded[i]})
