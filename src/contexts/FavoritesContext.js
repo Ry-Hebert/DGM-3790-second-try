@@ -15,6 +15,13 @@ const FavoritesContext = createContext({
 export const FavoritesContextProvider = (props) => {
     const [favorites, setFavorites] = useState([])
 
+    const updateFavorites = async () =>{
+        const apiRes = await axios.get(apiURL)
+        const resData = await apiRes.data
+
+        setFavorites(resData)
+    }
+
     useEffect(() =>{
         const fetchData = async () =>{
             try {
@@ -37,7 +44,7 @@ export const FavoritesContextProvider = (props) => {
     console.log(favorites)
 
     return (
-        <FavoritesContext.Provider value={{ favorites }}>
+        <FavoritesContext.Provider value={{ favorites, updateFavorites }}>
         {props.children}
         </FavoritesContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../assets/scss/fleetGrab.scss'
 import { useLoginContext } from '../contexts/LoginContext';
 import { useFavoritesContext } from '../contexts/FavoritesContext'
@@ -20,7 +20,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../assets/scss/fleetGrab.scss';
-import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
     expand: {
@@ -42,15 +41,12 @@ const FavoritesDis = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const favoritesManifest = useFavoritesContext()
-    const [fList, setFList] = useState(favoritesManifest)
+    const { updateFavorites } = useFavoritesContext()
+    
     const appAPI = 'https://star-citizen-fleet-api.herokuapp.com/model/likedShips/' //ATM Machine
 
     const updateFavoritesList = async () =>{
-        const quickFix = 'https://star-citizen-fleet-api.herokuapp.com/model/likedShips'
-
-        const apiRes = await axios.get(quickFix)
-        const resData = await apiRes.data
-        setFList(await resData)
+        updateFavorites()
     }
 
     const handleExpandClick = (i) => {
@@ -69,10 +65,9 @@ const FavoritesDis = () => {
         console.log(element.shipID)
         updateFavoritesList()
         console.log(favoritesManifest)
-        console.log(fList)
     }
 
-    console.log(fList)
+    console.log(favoritesManifest)
     return (
         <main>
             { !loginCtx.isAuth ? (
@@ -102,7 +97,7 @@ const FavoritesDis = () => {
                                             />
                                             <CardContent>
                                                 <Typography className='cardHeader' gutterBottom variant="h5" component="h2">
-                                                    {element.name}
+                                                    {element.shipName}
                                                 </Typography>
                                                 <Typography className='cardBText' variant='body2' component='p'>
                                                     {/* {element.description} */}
